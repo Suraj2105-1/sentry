@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { fetchMerchants, startVaccinationScan, getReportPdfUrl } from '../hooks/api'
+import { fetchMerchants, startVaccinationScan, getReportPdfUrl, WS_BASE } from '../hooks/api'
 import ScanProgress from '../components/Vaccination/ScanProgress'
 import VulnerabilityCard from '../components/Vaccination/VulnerabilityCard'
 import RazorpayOrderCard from '../components/Vaccination/RazorpayOrderCard'
@@ -55,7 +55,7 @@ export default function VaccinationPage() {
       const { scan_id } = await startVaccinationScan(selectedMerchant)
       setScanId(scan_id)
 
-      const ws = new WebSocket(`ws://localhost:8000/api/vaccination/ws/${scan_id}`)
+      const ws = new WebSocket(`${WS_BASE}/vaccination/ws/${scan_id}`)
       wsRef.current = ws
 
       ws.onmessage = (e) => {

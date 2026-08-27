@@ -1,5 +1,5 @@
-﻿import { useState, useEffect, useRef, useCallback } from 'react'
-import { fetchMerchants, createBattleSession } from '../hooks/api'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { fetchMerchants, createBattleSession, WS_BASE } from '../hooks/api'
 import CausalGraph from '../components/CausalDashboard/CausalGraph'
 import AgentAvatar from '../components/Arena/AgentAvatar'
 import BattleLog from '../components/Arena/BattleLog'
@@ -130,7 +130,7 @@ export default function ArenaPage() {
   // Establish WebSocket when sessionId changes
   useEffect(() => {
     if (!sessionId) return
-    const ws = new WebSocket(`ws://localhost:8000/api/arena/ws/${sessionId}`)
+    const ws = new WebSocket(`${WS_BASE}/arena/ws/${sessionId}`)
     wsRef.current = ws
     ws.onmessage = (e) => {
       try { handleMessage(JSON.parse(e.data)) } catch {}

@@ -1,0 +1,41 @@
+# Render Blueprint Specification
+# Deploy both FastAPI Backend and Vite React Frontend with 1-click
+services:
+  # ─── FastAPI Backend (Web Service) ──────────────────────────────────────────
+  - type: web
+    name: merchant-shadow-backend
+    runtime: python
+    region: oregon
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+
+  # ─── Vite React Frontend (Static Site) ──────────────────────────────────────
+  - type: web
+    name: merchant-shadow-frontend
+    runtime: static
+    region: oregon
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: merchant-shadow-backend
+          property: host
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

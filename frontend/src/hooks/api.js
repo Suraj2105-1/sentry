@@ -1,4 +1,8 @@
-const API_BASE = 'http://localhost:8000/api'
+const rawApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const cleanApiUrl = rawApiUrl.replace(/\/$/, '')
+
+export const API_BASE = `${cleanApiUrl}/api`
+export const WS_BASE = `${cleanApiUrl.replace(/^http/, 'ws')}/api`
 
 export async function fetchMerchants() {
   const res = await fetch(`${API_BASE}/merchants`)

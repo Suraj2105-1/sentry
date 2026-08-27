@@ -17,7 +17,7 @@ import { Line } from 'react-chartjs-2'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend, Filler)
 
-const API_BASE = 'http://localhost:8000/api'
+import { API_BASE } from '../../hooks/api'
 
 export default function BenchmarkChart({ merchants = [] }) {
   const [selectedMerchant, setSelectedMerchant] = useState(merchants[0]?.id || 'm001')
