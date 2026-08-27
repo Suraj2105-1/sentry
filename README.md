@@ -1,4 +1,4 @@
-# Merchant's Adversarial Shadow — Adaptive Payment Security for Agentic Commerce
+# SENTRY — Adaptive Payment Security for Agentic Commerce
 
 > *"While everyone else is teaching AI to shop, we're teaching AI to protect the store from AI shoppers."*
 
@@ -10,7 +10,7 @@
 
 Agentic commerce is here — AI buyer agents will purchase on behalf of users. But for every legitimate AI buyer, there are adversarial agents designed to exploit merchant systems through price manipulation, inventory hoarding, coupon stacking, return fraud, review bombing, and LLM-powered negotiation loops.
 
-**Merchant's Adversarial Shadow** is a self-play adversarial simulation gym that:
+**SENTRY** is a self-play adversarial simulation gym that:
 
 1. **Live Arena** — Runs a real-time Red Team (attacker) vs Blue Team (defender) battle. Both agents co-evolve across generations. Red agents adapt strategies based on empirical success history; Blue agents synthesize formal defense policies with causal attribution.
 
@@ -65,7 +65,7 @@ Backend (FastAPI + Python)
 
 ```bash
 git clone <repo-url>
-cd merchant-adversarial-shadow
+cd sentry
 cp .env.example backend/.env
 # Edit backend/.env and add your API keys (see below)
 ```
