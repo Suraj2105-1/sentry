@@ -1,0 +1,36 @@
+﻿# Environment
+.env
+*.env.local
+
+# Database
+backend/shadow.db
+shadow.db
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Node
+frontend/node_modules/
+node_modules/
+frontend/dist/
+dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
