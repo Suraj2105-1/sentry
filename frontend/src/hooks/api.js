@@ -1,5 +1,24 @@
-const rawApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000'
-const cleanApiUrl = rawApiUrl.replace(/\/$/, '')
+function getBackendUrl() {
+  const envUrl = import.meta.env.VITE_API_URL
+  if (envUrl && (envUrl.startsWith('http://') || envUrl.startsWith('https://'))) {
+    return envUrl.replace(/\/$/, '')
+  }
+  
+  // Auto-detect Render cloud deployment
+  if (typeof window !== 'undefined' && window.location.hostname.includes('onrender.com')) {
+    const backendHost = window.location.hostname.replace('frontend', 'backend')
+    return `${window.location.protocol}//${backendHost}`
+  }
+
+  // If envUrl is just domain like "merchant-shadow-backend.onrender.com"
+  if (envUrl && envUrl.includes('onrender.com')) {
+    return `https://${envUrl.replace(/\/$/, '')}`
+  }
+
+  return 'http://localhost:8000'
+}
+
+const cleanApiUrl = getBackendUrl()
 
 export const API_BASE = `${cleanApiUrl}/api`
 export const WS_BASE = `${cleanApiUrl.replace(/^http/, 'ws')}/api`
