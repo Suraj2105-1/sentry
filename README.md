@@ -9,7 +9,7 @@ project backend  : https://merchant-shadow-backend.onrender.com
 
 > *"While everyone else is teaching AI to shop, we're teaching AI to protect the store from AI shoppers."*
 
-**Razorpay AI Buildathon 2026 — Track: AI Risk Manager**
+
 
 ---
 
